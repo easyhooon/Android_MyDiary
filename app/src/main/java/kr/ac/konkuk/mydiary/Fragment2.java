@@ -191,14 +191,14 @@ public class Fragment2 extends Fragment {
         sliderView.setInitialIndex(2);
     }
 
-    /**
-     * ① 맑음
-     * ② 구름 조금
-     * ③ 구름 많음
-     * ④ 흐림
-     * ⑤ 비
-     * ⑥ 눈/비
-     * ⑦ 눈
+    /*
+     ① 맑음
+     ② 구름 조금
+     ③ 구름 많음
+     ④ 흐림
+     ⑤ 비
+     ⑥ 눈/비
+     ⑦ 눈
      */
 
     //기상청의 현재 날씨 문자열을 받아 아이콘을 설정하는 역할

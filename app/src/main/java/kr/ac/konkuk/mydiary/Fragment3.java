@@ -303,8 +303,6 @@ public class Fragment3 extends Fragment {
     public void loadStatData() {
         NoteDatabase database = NoteDatabase.getInstance(context);
 
-
-
         // first graph
         String sql = "select mood " +
                 "  , count(mood) " +
@@ -354,7 +352,6 @@ public class Fragment3 extends Fragment {
         }
 
         setData2(dataHash2);
-
 
         // third graph
         sql = "select strftime('%Y-%m-%d', create_date) " +
@@ -438,5 +435,4 @@ public class Fragment3 extends Fragment {
 
         return AppConstants.dateFormat5.format(cal.getTime());
     }
-
 }

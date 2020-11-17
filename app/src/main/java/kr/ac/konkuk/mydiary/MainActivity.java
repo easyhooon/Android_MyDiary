@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements OnTabItemSelected
         fragment2 = new Fragment2();
         fragment3 = new Fragment3();
 
-        //
+        //fragment transaction 화면 전환
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment1).commit();
 
         bottomNavigation = findViewById(R.id.bottom_navigation);
@@ -84,28 +84,26 @@ public class MainActivity extends AppCompatActivity implements OnTabItemSelected
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.tab1:
-//                        Toast.makeText(getApplicationContext(), "첫 번째 탭 선택됨", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getApplicationContext(), "첫 번째 탭 선택됨", Toast.LENGTH_SHORT).show();
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.container, fragment1).commit();
-
                         return true;
+
                     case R.id.tab2:
-//                        Toast.makeText(getApplicationContext(), "두 번째 탭 선택됨", Toast.LENGTH_LONG).show();
+//                        Toast.makeText(getApplicationContext(), "두 번째 탭 선택됨", Toast.LENGTH_SHORT).show();
 
                         fragment2 = new Fragment2();
 
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.container, fragment2).commit();
-
                         return true;
+
                     case R.id.tab3:
 //                        Toast.makeText(getApplicationContext(), "세 번째 탭 선택됨", Toast.LENGTH_LONG).show();
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.container, fragment3).commit();
-
                         return true;
                 }
-
                 return false;
             }
         });
@@ -146,12 +144,10 @@ public class MainActivity extends AppCompatActivity implements OnTabItemSelected
         }
     }
 
-
     public void setPicturePath() {
         String sdcardPath = Environment.getExternalStorageDirectory().getAbsolutePath();
         AppConstants.FOLDER_PHOTO = sdcardPath + File.separator + "photo";
     }
-
 
     public void onTabSelected(int position) {
         if(position == 0){
@@ -170,7 +166,6 @@ public class MainActivity extends AppCompatActivity implements OnTabItemSelected
 
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, fragment2).commit();
-
     }
 
     @Override
@@ -182,12 +177,12 @@ public class MainActivity extends AppCompatActivity implements OnTabItemSelected
 
     @Override
     public void onDenied(int requestCode, @NotNull String[] permissions) {
-        Toast.makeText(this, "permissions denied : " + permissions.length, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "permissions denied : " + permissions.length, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onGranted(int requestCode, @NotNull String[] permissions) {
-        Toast.makeText(this, "permissions granted : " + permissions.length, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "permissions granted : " + permissions.length, Toast.LENGTH_SHORT).show();
     }
 
     public void onRequest(String command) {

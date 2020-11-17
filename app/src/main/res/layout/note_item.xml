@@ -76,7 +76,6 @@
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
                     android:text="11월 27일"
-                    android:textColor="@color/colorPrimary"
                     android:textSize="16sp" />
 
             </RelativeLayout>

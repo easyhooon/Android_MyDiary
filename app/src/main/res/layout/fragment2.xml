@@ -109,7 +109,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:layout_marginTop="20dp"
-                app:filledColor="#FF6600"
+                app:filledColor="#23251E"
                 app:emptyColor="#a8aeb8"
                 app:rangeCount="5"
                 app:sliderRadiusPercent="0.4"
@@ -175,7 +175,8 @@
             android:layout_marginLeft="20dp"
             android:background="@drawable/select_button"
             android:text="저장"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white"
+            android:backgroundTint="#23251E"/>
 
         <Button
             android:id="@+id/deleteButton"
@@ -184,7 +185,8 @@
             android:layout_centerInParent="true"
             android:background="@drawable/select_button"
             android:text="삭제"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white"
+            android:backgroundTint="#23251E"/>
 
         <Button
             android:id="@+id/closeButton"
@@ -194,7 +196,8 @@
             android:layout_marginRight="20dp"
             android:background="@drawable/select_button"
             android:text="닫기"
-            android:textColor="@android:color/white"/>
+            android:textColor="@android:color/white"
+            android:backgroundTint="#23251E"/>
 
     </RelativeLayout>
 

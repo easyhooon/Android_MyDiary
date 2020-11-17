@@ -23,7 +23,7 @@
             app:strokeRadius="5dp"
             app:strokeWidth="1dp"
             app:selectedTab="0"
-            app:selectedColor="#eb7b00"
+            app:selectedColor="#23251E"
             app:switchTabs="@array/switch_tabs"
             app:textSize="14sp" />
 
@@ -35,8 +35,10 @@
             android:layout_alignParentRight="true"
             android:background="@drawable/select_button"
             android:text="오늘 작성"
-            android:textColor="@android:color/white"/>
-            <!-- #FFFFFF가 흰색-->
+            android:textColor="@android:color/white"
+            android:backgroundTint="#23251E"/>
+
+
 
     </RelativeLayout>
 
