@@ -84,13 +84,11 @@ public class MainActivity extends AppCompatActivity implements OnTabItemSelected
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.tab1:
-//                        Toast.makeText(getApplicationContext(), "첫 번째 탭 선택됨", Toast.LENGTH_SHORT).show();
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.container, fragment1).commit();
                         return true;
 
                     case R.id.tab2:
-//                        Toast.makeText(getApplicationContext(), "두 번째 탭 선택됨", Toast.LENGTH_SHORT).show();
 
                         fragment2 = new Fragment2();
 
@@ -99,7 +97,6 @@ public class MainActivity extends AppCompatActivity implements OnTabItemSelected
                         return true;
 
                     case R.id.tab3:
-//                        Toast.makeText(getApplicationContext(), "세 번째 탭 선택됨", Toast.LENGTH_LONG).show();
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.container, fragment3).commit();
                         return true;
@@ -129,7 +126,6 @@ public class MainActivity extends AppCompatActivity implements OnTabItemSelected
 
     // open database 없으면 새로 만듬
     public void openDatabase() {
-        // open database
         if (mDatabase != null) {
             mDatabase.close();
             mDatabase = null;
@@ -177,12 +173,10 @@ public class MainActivity extends AppCompatActivity implements OnTabItemSelected
 
     @Override
     public void onDenied(int requestCode, @NotNull String[] permissions) {
-//        Toast.makeText(this, "permissions denied : " + permissions.length, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onGranted(int requestCode, @NotNull String[] permissions) {
-//        Toast.makeText(this, "permissions granted : " + permissions.length, Toast.LENGTH_SHORT).show();
     }
 
     public void onRequest(String command) {
@@ -271,7 +265,6 @@ public class MainActivity extends AppCompatActivity implements OnTabItemSelected
 
         public void onStatusChanged(String provider, int status, Bundle extras) { }
     }
-
 
     //위치가 확인되면 현재위치를 이용해서 주소를 확인
     private void getCurrentAddress() {
