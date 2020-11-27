@@ -255,7 +255,6 @@ public class Fragment2 extends Fragment {
         } else {
             Log.d("Fragment2", "Unknown weather index : " + index);
         }
-
     }
 
     //주소 문자열을 받아 텍스트뷰에 보여주는 역할
@@ -329,11 +328,11 @@ public class Fragment2 extends Fragment {
 
     }
 
+    //다이얼로그 보여줌
     public void showDialog(int id) {
         AlertDialog.Builder builder = null;
 
         switch(id) {
-
             case AppConstants.CONTENT_PHOTO:
                 builder = new AlertDialog.Builder(context);
 
@@ -379,13 +378,13 @@ public class Fragment2 extends Fragment {
                             isPhotoCanceled = true;
                             isPhotoCaptured = false;
 
+                            pictureImageView.setImageResource(R.drawable.noimagefound);
+
                         }
                     }
                 });
                 builder.setNegativeButton("취소", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-
-                    }
+                    public void onClick(DialogInterface dialog, int whichButton) { }
                 });
 
                 break;
@@ -398,6 +397,7 @@ public class Fragment2 extends Fragment {
         dialog.show();
     }
 
+    //사진촬영
     public void showPhotoCaptureActivity() {
         if (file == null) {
             file = createFile();
@@ -412,6 +412,7 @@ public class Fragment2 extends Fragment {
         }
     }
 
+    //촬영한 사진을 파일로
     private File createFile() {
         String filename = "capture.jpg";
         File storageDir = Environment.getExternalStorageDirectory();
@@ -420,6 +421,7 @@ public class Fragment2 extends Fragment {
         return outFile;
     }
 
+    //사진 앨범에서 선택
     public void showPhotoSelectionActivity() {
         Intent intent = new Intent(Intent.ACTION_PICK,
                 MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -437,7 +439,6 @@ public class Fragment2 extends Fragment {
 
                     Log.d(TAG, "resultCode : " + resultCode);
 
-                    //setPicture(file.getAbsolutePath(), 8);
                     resultPhotoBitmap = decodeSampledBitmapFromResource(file, pictureImageView.getWidth(), pictureImageView.getHeight());
                     pictureImageView.setImageBitmap(resultPhotoBitmap);
 
@@ -461,7 +462,6 @@ public class Fragment2 extends Fragment {
                     isPhotoCaptured = true;
 
                     break;
-
             }
         }
     }
@@ -482,6 +482,7 @@ public class Fragment2 extends Fragment {
         return BitmapFactory.decodeFile(res.getAbsolutePath(),options);
     }
 
+    //사진 크기 계산
     public static int calculateInSampleSize(BitmapFactory.Options options, int reqWidth, int reqHeight) {
         // Raw height and width of image
         final int height = options.outHeight;
@@ -504,6 +505,7 @@ public class Fragment2 extends Fragment {
         return inSampleSize;
     }
 
+
     private String createFilename() {
         Date curDate = new Date();
         String curDateStr = String.valueOf(curDate.getTime());
@@ -511,6 +513,7 @@ public class Fragment2 extends Fragment {
         return curDateStr;
     }
 
+    //사진 저장
     private String savePicture() {
         if (resultPhotoBitmap == null) {
             AppConstants.println("No picture to be saved.");

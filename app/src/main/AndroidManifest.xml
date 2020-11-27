@@ -40,6 +40,7 @@
             android:authorities="kr.ac.konkuk.mydiary.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
+<!--            android:configChanges="orientation|screenSize">-->
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/external" />

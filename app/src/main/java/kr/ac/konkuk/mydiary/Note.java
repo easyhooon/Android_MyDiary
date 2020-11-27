@@ -24,75 +24,33 @@ public class Note {
     }
 
     //마우스 우클 -> generate로 getter & setter 메소드를 자동으로 만들 수 있음
+    //getter setter 함수들 모음
     public int get_id() {
         return _id;
-    }
-
-    public void set_id(int _id) {
-        this._id = _id;
     }
 
     public String getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getWeather() {
         return weather;
-    }
-
-    public void setWeather(String weather) {
-        this.weather = weather;
-    }
-
-    public String getLocationX() {
-        return locationX;
-    }
-
-    public void setLocationX(String locationX) {
-        this.locationX = locationX;
-    }
-
-    public String getLocationY() {
-        return locationY;
-    }
-
-    public void setLocationY(String locationY) {
-        this.locationY = locationY;
     }
 
     public String getContents() {
         return contents;
     }
 
-    public void setContents(String contents) {
-        this.contents = contents;
-    }
-
     public String getCreateDateStr() {
         return createDateStr;
-    }
-
-    public void setCreateDateStr(String createDateStr) {
-        this.createDateStr = createDateStr;
     }
 
     public String getMood() {
         return mood;
     }
 
-    public void setMood(String mood) {
-        this.mood = mood;
-    }
-
     public String getPicture() {
         return picture;
     }
 
-    public void setPicture(String picture) {
-        this.picture = picture;
-    }
 }

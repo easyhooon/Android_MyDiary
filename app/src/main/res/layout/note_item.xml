@@ -143,7 +143,7 @@
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
-                    android:text="강남구 삼성동"
+                    android:text="일산동구 백석동"
                     android:textSize="16sp" />
 
                 <TextView
@@ -152,7 +152,7 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_centerVertical="true"
-                    android:text="02월 10일"
+                    android:text="11월 27일"
                     android:textColor="@color/colorPrimary"
                     android:textSize="16sp" />
 

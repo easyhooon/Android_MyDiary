@@ -6,22 +6,31 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+//메모 데이터베이스
 public class NoteDatabase {
     private static final String TAG = "NoteDatabase";
 
+    //싱글톤 인스턴스
     private static NoteDatabase database;
 
+    //테이블 이름
     public static String TABLE_NOTE = "NOTE";
+    //버전
     public static int DATABASE_VERSION = 1;
 
+    //Helper class 정의
     private DatabaseHelper dbHelper;
+    //SQLiteDatabase 인스턴스
     private SQLiteDatabase db;
+    //Context 객체
     private Context context;
 
+    //생성자
     private NoteDatabase(Context context) {
         this.context = context;
     }
 
+    //인스턴스 가져오기
     public static NoteDatabase getInstance(Context context) {
         if (database == null) {
             database = new NoteDatabase(context);
@@ -30,6 +39,7 @@ public class NoteDatabase {
         return database;
     }
 
+    //데이터베이스 열기
     public boolean open() {
         println("opening database [" + AppConstants.DATABASE_NAME + "].");
 
@@ -39,6 +49,7 @@ public class NoteDatabase {
         return true;
     }
 
+    //데이터 베이스 닫기
     public void close() {
         println("closing database [" + AppConstants.DATABASE_NAME + "].");
         db.close();
@@ -46,6 +57,8 @@ public class NoteDatabase {
         database = null;
     }
 
+    //execute raw query using the input SQL
+    //close the cursor after fetching any result
     public Cursor rawQuery(String SQL) {
         println("\nexecuteQuery called.\n");
 
@@ -74,6 +87,8 @@ public class NoteDatabase {
         return true;
     }
 
+    //Database Helper inner class
+
     //SQLiteOpenHelper를 상속받기 때문에 새로 데이터베이스가 만들어져야 하는 상태에서는 onCreate 메소드가 자동으로 호출 됨
     private class DatabaseHelper extends SQLiteOpenHelper {
 
@@ -88,6 +103,7 @@ public class NoteDatabase {
             //Note 테이블 생성
             println("creating table [" + TABLE_NOTE + "].");
 
+            //기존의 존재하는 table을 drop
             String DROP_SQL = "drop table if exists " + TABLE_NOTE;
             try {
                 db.execSQL(DROP_SQL);
@@ -95,6 +111,7 @@ public class NoteDatabase {
                 Log.e(TAG, "Exception in DROP_SQL", ex);
             }
 
+            //create table
             String CREATE_SQL = "create table " + TABLE_NOTE + "("
                     + "  _id INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT, "
                     + "  WEATHER TEXT DEFAULT '', "
@@ -113,7 +130,7 @@ public class NoteDatabase {
                 Log.e(TAG, "Exception in CREATE_SQL", ex);
             }
 
-            //CREATE_DATE 칼럼에 인덱스를 생성성
+            //CREATE_DATE 칼럼에 인덱스를 생성
             String CREATE_INDEX_SQL = "create index " + TABLE_NOTE + "_IDX ON " + TABLE_NOTE + "("
                     + "CREATE_DATE"
                     + ")";

@@ -5,7 +5,7 @@
     <string name="tab_title2">작성</string>
     <string name="tab_title3">통계</string>
 
-    <string name="write_today">오늘 작성</string>
+    <string name="write_today">작성</string>
 
     <string name="today_date_string">O월 O일</string>
     <string name="address_string">OO구 OO동</string>

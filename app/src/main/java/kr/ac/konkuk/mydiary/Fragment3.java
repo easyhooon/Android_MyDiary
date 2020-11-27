@@ -41,13 +41,10 @@ import java.util.concurrent.TimeUnit;
 
 
 public class Fragment3 extends Fragment {
-    private static final String TAG = "Fragment2";
-
     Context context;
 
     PieChart chart;
     BarChart chart2;
-    LineChart chart3;
 
     @Override
     public void onAttach(Context context) {
@@ -122,50 +119,6 @@ public class Fragment3 extends Fragment {
 
         chart2.animateXY(1500, 1500);
 
-        // setting for third graph
-        chart3 = rootView.findViewById(R.id.chart3);
-
-        chart3.getDescription().setEnabled(false);
-        chart3.setDrawGridBackground(false);
-        chart3.setBackgroundColor(Color.WHITE);
-        chart3.setViewPortOffsets(0, 0, 0, 0);
-
-        Legend legend3 = chart3.getLegend();
-        legend3.setEnabled(false);
-
-        XAxis xAxis3 = chart3.getXAxis();
-        xAxis3.setPosition(XAxis.XAxisPosition.BOTTOM_INSIDE);
-        xAxis3.setTextSize(10f);
-        xAxis3.setTextColor(Color.WHITE);
-        xAxis3.setDrawAxisLine(false);
-        xAxis3.setDrawGridLines(true);
-        xAxis3.setTextColor(Color.rgb(255, 192, 56));
-        xAxis3.setCenterAxisLabels(true);
-        xAxis3.setGranularity(1f);
-        xAxis3.setValueFormatter(new ValueFormatter() {
-            private final SimpleDateFormat mFormat = new SimpleDateFormat("MM-dd", Locale.KOREA);
-
-            @Override
-            public String getFormattedValue(float value) {
-                Date date = new Date();
-                long millis = date.getTime() + TimeUnit.HOURS.toMillis((long) value);
-                return mFormat.format(new Date(millis));
-            }
-        });
-
-        YAxis leftAxis3 = chart3.getAxisLeft();
-        leftAxis3.setPosition(YAxis.YAxisLabelPosition.INSIDE_CHART);
-        leftAxis3.setTextColor(ColorTemplate.getHoloBlue());
-        leftAxis3.setDrawGridLines(true);
-        leftAxis3.setGranularityEnabled(true);
-        leftAxis3.setAxisMinimum(0f);
-        leftAxis3.setAxisMaximum(5f);
-        leftAxis3.setYOffset(-9f);
-        leftAxis3.setTextColor(Color.rgb(255, 192, 56));
-
-        YAxis rightAxis3 = chart3.getAxisRight();
-        rightAxis3.setEnabled(false);
-
     }
 
     private void setData1(HashMap<String,Integer> dataHash1) {
@@ -214,13 +167,13 @@ public class Fragment3 extends Fragment {
     private void setData2(HashMap<String,Integer> dataHash2) {
         ArrayList<BarEntry> entries = new ArrayList<>();
 
-        String[] keys = {"0", "1", "2", "3", "4", "5", "6"};
+        String[] keys = {"0", "1", "2", "3", "4", "5" ,"6"};
         int[] icons = {R.drawable.smile1_24, R.drawable.smile2_24,
                 R.drawable.smile3_24, R.drawable.smile4_24,
                 R.drawable.smile5_24};
 
         for (int i = 0; i < keys.length; i++) {
-            float value = 0.0f;
+            float value = 0.0f; //기분 default값
             Integer outValue = dataHash2.get(keys[i]);
             AppConstants.println("#" + i + " -> " + outValue);
             if (outValue != null) {
@@ -228,19 +181,19 @@ public class Fragment3 extends Fragment {
             }
 
             Drawable drawable = null;
-            if (value <= 1.0f) {
+            if (value < 1.0f) {
                 drawable = getResources().getDrawable(icons[0]);
-            } else if (value <= 2.0f) {
+            } else if (value < 2.0f) {
                 drawable = getResources().getDrawable(icons[1]);
-            } else if (value <= 3.0f) {
+            } else if (value < 3.0f) {
                 drawable = getResources().getDrawable(icons[2]);
-            } else if (value <= 4.0f) {
+            } else if (value < 4.0f) {
                 drawable = getResources().getDrawable(icons[3]);
-            } else if (value <= 5.0f) {
+            } else if (value < 5.0f) {
                 drawable = getResources().getDrawable(icons[4]);
             }
 
-            entries.add(new BarEntry(Float.valueOf(String.valueOf(i+1)), value, drawable));
+            entries.add(new BarEntry(Float.valueOf(String.valueOf(i+1)), value+1, drawable));
         }
 
         BarDataSet dataSet2 = new BarDataSet(entries, getResources().getString(R.string.graph2_title));
@@ -260,44 +213,6 @@ public class Fragment3 extends Fragment {
 
         chart2.setData(data);
         chart2.invalidate();
-    }
-
-    private void setData3(ArrayList<Float> dataKeys3, ArrayList<Integer> dataValues3) {
-
-        ArrayList<Entry> entries = new ArrayList<>();
-
-        for (int i = 0; i < dataKeys3.size(); i++) {
-            try {
-                float outKey = dataKeys3.get(i);
-                Integer outValue = dataValues3.get(i);
-
-                AppConstants.println("#" + i + " -> " + outKey + ", " + outValue);
-                entries.add(new Entry(outKey, new Float(outValue)));
-
-            } catch(Exception e) {
-                e.printStackTrace();
-            }
-        }
-
-        LineDataSet set1 = new LineDataSet(entries, getResources().getString(R.string.graph3_title));
-        set1.setAxisDependency(YAxis.AxisDependency.LEFT);
-        set1.setColor(ColorTemplate.getHoloBlue());
-        set1.setValueTextColor(ColorTemplate.getHoloBlue());
-        set1.setLineWidth(1.5f);
-        set1.setDrawCircles(true);
-        set1.setDrawValues(false);
-        set1.setFillAlpha(65);
-        set1.setFillColor(ColorTemplate.getHoloBlue());
-        set1.setHighLightColor(Color.rgb(244, 117, 117));
-        set1.setDrawCircleHole(false);
-
-        LineData data = new LineData(set1);
-        data.setValueTextColor(Color.WHITE);
-        data.setValueTextSize(9f);
-
-        chart3.setData(data);
-        chart3.invalidate();
-
     }
 
     public void loadStatData() {
@@ -353,60 +268,6 @@ public class Fragment3 extends Fragment {
 
         setData2(dataHash2);
 
-        // third graph
-        sql = "select strftime('%Y-%m-%d', create_date) " +
-                "  , avg(cast(mood as real)) " +
-                "from " + NoteDatabase.TABLE_NOTE + " " +
-                "where create_date > '" + getDayBefore(7) + "' " +
-                "  and create_date < '" + getTomorrow() + "' " +
-                "group by strftime('%Y-%m-%d', create_date)";
-
-        cursor = database.rawQuery(sql);
-        recordCount = cursor.getCount();
-        AppConstants.println("recordCount : " + recordCount);
-
-        HashMap<String,Integer> recordsHash = new HashMap<String,Integer>();
-        for (int i = 0; i < recordCount; i++) {
-            cursor.moveToNext();
-
-            String monthDate = cursor.getString(0);
-            int moodCount = cursor.getInt(1);
-
-            AppConstants.println("#" + i + " -> " + monthDate + ", " + moodCount);
-            recordsHash.put(monthDate, moodCount);
-        }
-
-        ArrayList<Float> dataKeys3 = new ArrayList<Float>();
-        ArrayList<Integer> dataValues3 = new ArrayList<Integer>();
-
-        Date todayDate = new Date();
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(todayDate);
-        cal.add(Calendar.DAY_OF_MONTH, -7);
-
-        for (int i = 0; i < 7; i++) {
-            cal.add(Calendar.DAY_OF_MONTH, 1);
-            String monthDate = AppConstants.dateFormat5.format(cal.getTime());
-            Object moodCount = recordsHash.get(monthDate);
-
-            dataKeys3.add((i-6) * 24.0f);
-            if (moodCount == null) {
-                dataValues3.add(0);
-            } else {
-                dataValues3.add((Integer)moodCount);
-            }
-
-            AppConstants.println("#" + i + " -> " + monthDate + ", " + moodCount);
-        }
-
-        setData3(dataKeys3, dataValues3);
-
-    }
-
-    public String getToday() {
-        Date todayDate = new Date();
-
-        return AppConstants.dateFormat5.format(todayDate);
     }
 
     public String getTomorrow() {
@@ -414,15 +275,6 @@ public class Fragment3 extends Fragment {
         Calendar cal = Calendar.getInstance();
         cal.setTime(todayDate);
         cal.add(Calendar.DAY_OF_MONTH, 1);
-
-        return AppConstants.dateFormat5.format(cal.getTime());
-    }
-
-    public String getDayBefore(int amount) {
-        Date todayDate = new Date();
-        Calendar cal = Calendar.getInstance();
-        cal.setTime(todayDate);
-        cal.add(Calendar.DAY_OF_MONTH, (amount * -1));
 
         return AppConstants.dateFormat5.format(cal.getTime());
     }

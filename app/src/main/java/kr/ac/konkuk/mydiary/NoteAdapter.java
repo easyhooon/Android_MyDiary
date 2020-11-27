@@ -118,7 +118,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
                 @Override
                 public void onClick(View view) {
                     int position = getAdapterPosition();
-
                     if (listener != null) {
                         listener.onItemClick(ViewHolder.this, view, position);
                     }
@@ -139,19 +138,16 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
             Log.d("NoteAdapter", "picturePath -> " + picturePath);
 
             if (picturePath != null && !picturePath.equals("")) {
-                //AppConstants.println("DEBUG 1");
                 pictureExistsImageView.setVisibility(View.VISIBLE);
                 pictureImageView.setVisibility(View.VISIBLE);
                 pictureImageView.setImageURI(Uri.parse("file://" + picturePath));
 
             } else {
-                //AppConstants.println("DEBUG 2");
                 pictureExistsImageView.setVisibility(View.GONE);
                 pictureImageView.setVisibility(View.GONE);
                 pictureImageView.setImageResource(R.drawable.noimagefound);
 
             }
-
             // set weather
             String weather = item.getWeather();
             int weatherIndex = Integer.parseInt(weather);
