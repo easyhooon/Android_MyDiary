@@ -504,14 +504,12 @@ public class Fragment2 extends Fragment {
         return inSampleSize;
     }
 
-
     private String createFilename() {
         Date curDate = new Date();
         String curDateStr = String.valueOf(curDate.getTime());
 
         return curDateStr;
     }
-
 
     private String savePicture() {
         if (resultPhotoBitmap == null) {
