@@ -15,6 +15,7 @@ public class GridUtil {
     public static final double XO = 43; // 기준점 X좌표(GRID)
     public static final double YO = 136; // 기1준점 Y좌표(GRID)
 
+    //경위도 좌표를 격자 좌표로 변환하기 위한 메소드 
     public static Map<String, Double> getGrid(double v1, double v2) {
 
         double DEGRAD = Math.PI / 180.0;

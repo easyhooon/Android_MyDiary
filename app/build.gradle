@@ -49,11 +49,11 @@ dependencies {
 
     testImplementation 'junit:junit:4.+'
 
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2' //자바 프로그래밍 언어용 유닛 테스크 프레임 워크
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0' // 간결한 UI 테스트를 위함
 
-    implementation 'androidx.recyclerview:recyclerview:1.0.0'
-    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0' //리사이클러 뷰 이용
+    implementation 'androidx.cardview:cardview:1.0.0' //차트를 효과적으로 쓸 수 있기 위함
 
-    implementation 'com.github.pedroSG94:AutoPermissions:1.0.3'
+    implementation 'com.github.pedroSG94:AutoPermissions:1.0.3'// 앱 권한 요청 라이브러리 이용 하기 위함
 }

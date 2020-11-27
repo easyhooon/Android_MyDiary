@@ -121,9 +121,11 @@ public class Fragment3 extends Fragment {
 
     }
 
+    //fist graph set data
     private void setData1(HashMap<String,Integer> dataHash1) {
         ArrayList<PieEntry> entries = new ArrayList<>();
 
+        //기분의 종류 5가지
         String[] keys = {"0", "1", "2", "3", "4"};
         int[] icons = {R.drawable.smile1_24, R.drawable.smile2_24,
                 R.drawable.smile3_24, R.drawable.smile4_24,
@@ -164,9 +166,11 @@ public class Fragment3 extends Fragment {
         chart.invalidate();
     }
 
+    //second graph set data
     private void setData2(HashMap<String,Integer> dataHash2) {
         ArrayList<BarEntry> entries = new ArrayList<>();
 
+        //일주일 원소 7개
         String[] keys = {"0", "1", "2", "3", "4", "5" ,"6"};
         int[] icons = {R.drawable.smile1_24, R.drawable.smile2_24,
                 R.drawable.smile3_24, R.drawable.smile4_24,
@@ -196,6 +200,7 @@ public class Fragment3 extends Fragment {
             entries.add(new BarEntry(Float.valueOf(String.valueOf(i+1)), value+1, drawable));
         }
 
+        //setting for second graph
         BarDataSet dataSet2 = new BarDataSet(entries, getResources().getString(R.string.graph2_title));
         dataSet2.setColor(Color.rgb(240, 120, 124));
 
@@ -215,6 +220,7 @@ public class Fragment3 extends Fragment {
         chart2.invalidate();
     }
 
+    //DB로 data load
     public void loadStatData() {
         NoteDatabase database = NoteDatabase.getInstance(context);
 
@@ -270,6 +276,7 @@ public class Fragment3 extends Fragment {
 
     }
 
+    //내일 날짜를 문자열로 가져옴
     public String getTomorrow() {
         Date todayDate = new Date();
         Calendar cal = Calendar.getInstance();
@@ -279,6 +286,7 @@ public class Fragment3 extends Fragment {
         return AppConstants.dateFormat5.format(cal.getTime());
     }
 
+    //한달 전의 날짜를 문자열로 가져옴
     public String getMonthBefore(int amount) {
         Date todayDate = new Date();
         Calendar cal = Calendar.getInstance();

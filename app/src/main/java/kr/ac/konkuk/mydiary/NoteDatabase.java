@@ -73,6 +73,7 @@ public class NoteDatabase {
         return cursor;
     }
 
+    //exec SQL
     public boolean execSQL(String SQL) {
         println("\nexecute called.\n");
 

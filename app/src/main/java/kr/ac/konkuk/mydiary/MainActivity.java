@@ -40,37 +40,32 @@ import kr.ac.konkuk.mydiary.data.WeatherItem;
 import kr.ac.konkuk.mydiary.data.WeatherResult;
 
 public class MainActivity extends AppCompatActivity implements OnTabItemSelectedListener, OnRequestListener, AutoPermissionsListener, MyApplication.OnResponseListener{
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "MainActivity"; // 테그 네임
 
-    Fragment1 fragment1;
-    Fragment2 fragment2;
-    Fragment3 fragment3;
+    Fragment1 fragment1; //첫번째 화면
+    Fragment2 fragment2; //두번째 화면
+    Fragment3 fragment3; //세번째 화면
 
-    BottomNavigationView bottomNavigation;
+    BottomNavigationView bottomNavigation; // 하단바
 
-    Location currentLocation;
-    GPSListener gpsListener;
-
-    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmm");
-    SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd HH시");
-    SimpleDateFormat dateFormat3 = new SimpleDateFormat("MM월 dd일");
-    SimpleDateFormat dateFormat4 = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    Location currentLocation; // 현재위치 객체
+    GPSListener gpsListener; // gps 객체
 
     int locationCount = 0; //위치 정보를 확인한 횟수
-    String currentWeather;
-    String currentAddress;
-    String currentDateString;
-    Date currentDate;
+    String currentWeather; //현재 날씨
+    String currentAddress; //현재 주소
+    String currentDateString; //현재 날짜를 스트링 형식으로
+    Date currentDate; // 현재 날짝 객체
 
     // 데이터베이스 객체
-    public static NoteDatabase mDatabase = null;
+    public static NoteDatabase mDatabase = null; // 초기화
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //객체 선언
+        //객체 생성
         fragment1 = new Fragment1();
         fragment2 = new Fragment2();
         fragment3 = new Fragment3();
@@ -79,11 +74,13 @@ public class MainActivity extends AppCompatActivity implements OnTabItemSelected
         getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment1).commit();
 
         bottomNavigation = findViewById(R.id.bottom_navigation);
+        //클릭하면 그 화면으로 전환
         bottomNavigation.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.tab1:
+                        //화면 전환 메소드
                         getSupportFragmentManager().beginTransaction()
                                 .replace(R.id.container, fragment1).commit();
                         return true;
@@ -105,8 +102,10 @@ public class MainActivity extends AppCompatActivity implements OnTabItemSelected
             }
         });
 
+        //권한 허용
         AutoPermissions.Companion.loadAllPermissions(this, 101);
 
+        //사진 경로 설정
         setPicturePath();
 
         // 데이버베이스 열기
@@ -115,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements OnTabItemSelected
     }
 
     @Override
+    //close database
     protected void onDestroy() {
         super.onDestroy();
 
@@ -140,6 +140,7 @@ public class MainActivity extends AppCompatActivity implements OnTabItemSelected
         }
     }
 
+    //사진 경로 설정
     public void setPicturePath() {
         String sdcardPath = Environment.getExternalStorageDirectory().getAbsolutePath();
         AppConstants.FOLDER_PHOTO = sdcardPath + File.separator + "photo";
@@ -155,6 +156,7 @@ public class MainActivity extends AppCompatActivity implements OnTabItemSelected
         }
     }
 
+    //Fragement2로 이동
     public void showFragment2(Note item) {
 
         fragment2 = new Fragment2();
@@ -214,6 +216,7 @@ public class MainActivity extends AppCompatActivity implements OnTabItemSelected
             long minTime = 10000;
             float minDistance = 0;
 
+            //10초마다 장소 정보를 계속 업데이트 따라서 10초마다 로그가 출력됨
             manager.requestLocationUpdates(
                     LocationManager.GPS_PROVIDER,
                     minTime, minDistance, gpsListener);
@@ -387,7 +390,7 @@ public class MainActivity extends AppCompatActivity implements OnTabItemSelected
         }
 
     }
-
+    //로그 출력을 위한 메소드
     private void println(String data) { Log.d(TAG, data); }
 
 }

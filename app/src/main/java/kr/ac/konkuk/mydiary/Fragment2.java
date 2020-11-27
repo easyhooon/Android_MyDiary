@@ -397,7 +397,7 @@ public class Fragment2 extends Fragment {
         dialog.show();
     }
 
-    //사진촬영
+    //사진 촬영
     public void showPhotoCaptureActivity() {
         if (file == null) {
             file = createFile();

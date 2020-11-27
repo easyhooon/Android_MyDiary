@@ -163,6 +163,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
             dateTextView2.setText(item.getCreateDateStr());
         }
 
+        //기분 이미지 설정
         public void setMoodImage(int moodIndex) {
             switch(moodIndex) {
                 case 0:
@@ -192,6 +193,7 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
             }
         }
 
+        //날씨 이미지 설정
         public void setWeatherImage(int weatherIndex) {
             switch(weatherIndex) {
                 case 0:
@@ -231,9 +233,11 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
 
         //내용 중심으로 보일지 사진 중심으로 보일지에 따라 다른 레이아웃
         public void setLayoutType(int layoutType) {
+            //내용중심
             if (layoutType == 0) {
                 layout1.setVisibility(View.VISIBLE);
                 layout2.setVisibility(View.GONE);
+                //사진 중심
             } else if (layoutType == 1) {
                 layout1.setVisibility(View.GONE);
                 layout2.setVisibility(View.VISIBLE);

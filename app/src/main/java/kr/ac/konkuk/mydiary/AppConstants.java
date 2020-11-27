@@ -15,15 +15,15 @@ public class AppConstants {
     public static final int REQ_PHOTO_CAPTURE = 103; //사진 촬영
     public static final int REQ_PHOTO_SELECTION = 104; //사진 앨범
 
-    public static final int CONTENT_PHOTO = 105;
-    public static final int CONTENT_PHOTO_EX = 106;
+    public static final int CONTENT_PHOTO = 105; //사진 촬영 메뉴
+    public static final int CONTENT_PHOTO_EX = 106; //사진 앨범 메뉴
 
     public static String FOLDER_PHOTO;//사진 저장 경로
 
     public static String DATABASE_NAME = "note.db";
 
     public static final int MODE_INSERT = 1; //일기 작성
-    public static final int MODE_MODIFY = 2;//일기 수정
+    public static final int MODE_MODIFY = 2; //일기 수정
 
     public static SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmm");
     public static SimpleDateFormat dateFormat2 = new SimpleDateFormat("yyyy-MM-dd HH시");
@@ -32,7 +32,7 @@ public class AppConstants {
     public static SimpleDateFormat dateFormat5 = new SimpleDateFormat("yyyy-MM-dd");
 
 
-    private static Handler handler = new Handler();
+    private static Handler handler = new Handler(); //로그 생성을 위한 스레드 구현 방법 중 하나인 핸들러 를 이용한 스레드 구현
 
     public static void println(final String data) {
         handler.post(new Runnable() {

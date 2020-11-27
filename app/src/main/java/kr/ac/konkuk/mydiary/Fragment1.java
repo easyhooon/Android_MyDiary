@@ -57,6 +57,7 @@ public class Fragment1 extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment1, container, false);
 
+        //처음 ui를 시작
         initUI(rootView);
 
         // 데이터 로딩
@@ -136,6 +137,7 @@ public class Fragment1 extends Fragment {
                 outCursor.moveToNext();
 
                 int _id = outCursor.getInt(0);
+                //각 요소들을 문자열의 형식으로 받아옴
                 String weather = outCursor.getString(1);
                 String address = outCursor.getString(2);
                 String locationX = outCursor.getString(3);
@@ -165,7 +167,9 @@ public class Fragment1 extends Fragment {
 
             outCursor.close();
 
+            //어댑터의 아이템 설정
             adapter.setItems(items);
+            //데이터 갱신
             adapter.notifyDataSetChanged();
         }
 

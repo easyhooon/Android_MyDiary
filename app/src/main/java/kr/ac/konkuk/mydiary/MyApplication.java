@@ -42,7 +42,7 @@ public class MyApplication extends Application {
     @Override
     public void onTerminate() {
         super.onTerminate();
-    }
+    } //종료
 
     //volley에서 응답을 받는 경우
     public static interface OnResponseListener {
