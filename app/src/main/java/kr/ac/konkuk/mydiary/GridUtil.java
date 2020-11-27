@@ -3,6 +3,7 @@ package kr.ac.konkuk.mydiary;
 import java.util.HashMap;
 import java.util.Map;
 
+//경위도 좌표를 격자 번호로 변화하기위한 클래스
 public class GridUtil {
 
     public static final double RE = 6371.00877; // 지구 반경(km)

@@ -48,22 +48,6 @@ public class Note {
         this.weather = weather;
     }
 
-    public String getContents() {
-        return contents;
-    }
-
-    public void setContents(String contents) {
-        this.contents = contents;
-    }
-
-    public String getCreateDateStr() {
-        return createDateStr;
-    }
-
-    public void setCreateDateStr(String createDateStr) {
-        this.createDateStr = createDateStr;
-    }
-
     public String getLocationX() {
         return locationX;
     }
@@ -78,6 +62,22 @@ public class Note {
 
     public void setLocationY(String locationY) {
         this.locationY = locationY;
+    }
+
+    public String getContents() {
+        return contents;
+    }
+
+    public void setContents(String contents) {
+        this.contents = contents;
+    }
+
+    public String getCreateDateStr() {
+        return createDateStr;
+    }
+
+    public void setCreateDateStr(String createDateStr) {
+        this.createDateStr = createDateStr;
     }
 
     public String getMood() {

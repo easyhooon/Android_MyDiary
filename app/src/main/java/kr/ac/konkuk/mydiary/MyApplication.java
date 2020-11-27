@@ -62,7 +62,7 @@ public class MyApplication extends Application {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        //Log.d(TAG, "Response for " + requestCode + " -> " + response);
+                        Log.d(TAG, "Response for " + requestCode + " -> " + response);
 
                         if (listener != null) {
                             listener.processResponse(requestCode, 200, response);
@@ -84,7 +84,6 @@ public class MyApplication extends Application {
             protected Map<String, String> getParams() throws AuthFailureError {
                 return params;
             }
-
         };
 
         request.setShouldCache(false);
@@ -95,5 +94,4 @@ public class MyApplication extends Application {
         Log.d(TAG, "Request sent : " + requestCode);
         Log.d(TAG, "Request url : " + url);
     }
-
 }

@@ -81,6 +81,7 @@ public class NoteDatabase {
             super(context, AppConstants.DATABASE_NAME, null, DATABASE_VERSION);
         }
 
+        //Note테이블을 만들고 CREATE_TABLE칼럼에 인덱스를 생성
         public void onCreate(SQLiteDatabase db) {
             println("creating database [" + AppConstants.DATABASE_NAME + "].");
 

@@ -75,6 +75,9 @@ public class Fragment2 extends Fragment {
 
     Note item;
 
+    //onAttach-> 전달받은 액티비티 객체가 OnRequestListener 인터페이스를 구현하고 있을 경우 requestListener변수에 할당
+    //그리고 onCreateView()안에서 OnRequestListener 객체의 onRequest()메소드를 호출하도록 함
+    //이것으로 입력화면이 보일때마다 현재 위치를 확인할 수 있도록 MainActivity클래스의 onRequest()메서드가 호출됨
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -98,7 +101,6 @@ public class Fragment2 extends Fragment {
         if (context != null) {
             context = null;
             listener = null;
-            requestListener = null;
         }
     }
 
@@ -108,11 +110,15 @@ public class Fragment2 extends Fragment {
 
         initUI(rootView);
 
+        // check current location
         if (requestListener != null) {
             requestListener.onRequest("getCurrentLocation");
         }
 
+        applyItem();
+
         return rootView;
+
     }
 
     private void initUI(ViewGroup rootView) {
@@ -191,15 +197,15 @@ public class Fragment2 extends Fragment {
         sliderView.setInitialIndex(2);
     }
 
-    /*
-     ① 맑음
-     ② 구름 조금
-     ③ 구름 많음
-     ④ 흐림
-     ⑤ 비
-     ⑥ 눈/비
-     ⑦ 눈
-     */
+
+//     0. 맑음
+//     1. 구름 조금
+//     2. 구름 많음
+//     3. 흐림
+//     4. 비
+//     5. 눈/비
+//     6.  눈
+
 
     //기상청의 현재 날씨 문자열을 받아 아이콘을 설정하는 역할
     public void setWeather(String data) {
@@ -373,7 +379,6 @@ public class Fragment2 extends Fragment {
                             isPhotoCanceled = true;
                             isPhotoCaptured = false;
 
-                            pictureImageView.setImageResource(R.drawable.picture1);
                         }
                     }
                 });
@@ -398,7 +403,7 @@ public class Fragment2 extends Fragment {
             file = createFile();
         }
 
-        Uri fileUri = FileProvider.getUriForFile(context,"org.techtown.diary.fileprovider", file);
+        Uri fileUri = FileProvider.getUriForFile(context,"kr.ac.konkuk.mydiary.fileprovider", file);
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION|Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);

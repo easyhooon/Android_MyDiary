@@ -36,7 +36,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.volley:volley:1.1.0'//Volley와 (인터넷으로 필요한 정보를 요청하기 위한 라이브러리)
     implementation 'com.google.code.gson:gson:2.8.5'//gson 라이브러리를 쓸 수 있도록 (응답을 받았을 때, JSON포맷으로 된 데이터를 자바 객체로 변환하기 위한 라이브러리)
-    implementation 'com.stanfy:gson-xml-java:0.1.7' //xml포맷으로 된 데이터를 자바 객체로 변환하는 라이브러리
+    implementation 'com.stanfy:gson-xml-java:0.1.7' //xml포맷으로 된 데이터를 자바 객체로 변환하는 라이브러리(기상청의 응답이 xml포맷으로 되어있기 때문에)
     implementation 'com.github.pedroSG94:AutoPermissions:1.0.3' //위험권한을 자동으로 추가하기 위한 것 (위치 확인 등에 사용되는 위험 권한을 사용자에게 요청해야하기 때문)
     implementation 'lib.kingja.switchbutton:switchbutton:1.1.8' // 예쁜 라디오 버튼
     implementation 'com.github.channguyen:rsv:1.0.1' //시크바가 연속이 아닌 구간으로

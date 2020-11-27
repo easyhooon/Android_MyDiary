@@ -45,10 +45,6 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.ViewHolder>
         return items.size();
     }
 
-    public void addItem(Note item) {
-        items.add(item);
-    }
-
     public void setItems(ArrayList<Note> items) {
         this.items = items;
     }

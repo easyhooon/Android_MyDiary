@@ -4,6 +4,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.os.Bundle;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -82,7 +83,6 @@ public class Fragment1 extends Fragment {
         switchButton.setOnSwitchListener(new SwitchMultiButton.OnSwitchListener() {
             @Override
             public void onSwitch(int position, String tabText) {
-//                Toast.makeText(getContext(), tabText, Toast.LENGTH_SHORT).show();
 
                 adapter.switchLayout(position);
                 adapter.notifyDataSetChanged();
@@ -104,12 +104,15 @@ public class Fragment1 extends Fragment {
             public void onItemClick(NoteAdapter.ViewHolder holder, View view, int position) {
                 Note item = adapter.getItem(position);
 
-//                Toast.makeText(getContext(), "아이템 선택됨 : " + item.getContents(), Toast.LENGTH_SHORT).show();
+                Log.d(TAG, "아이템 선택됨 : " + item.get_id());
+
+                if (listener != null) {
+                    listener.showFragment2(item);
+                }
             }
         });
 
     }
-
 
     //DB에 저장된 일기 데이터를 조회(load)
     public int loadNoteListData() {
@@ -164,7 +167,6 @@ public class Fragment1 extends Fragment {
 
             adapter.setItems(items);
             adapter.notifyDataSetChanged();
-
         }
 
         return recordCount;

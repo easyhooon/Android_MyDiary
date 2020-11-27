@@ -39,7 +39,7 @@ import java.util.Map;
 import kr.ac.konkuk.mydiary.data.WeatherItem;
 import kr.ac.konkuk.mydiary.data.WeatherResult;
 
-public class MainActivity extends AppCompatActivity implements OnTabItemSelectedListener, OnRequestListener, MyApplication.OnResponseListener, AutoPermissionsListener {
+public class MainActivity extends AppCompatActivity implements OnTabItemSelectedListener, OnRequestListener, AutoPermissionsListener, MyApplication.OnResponseListener{
     private static final String TAG = "MainActivity";
 
     Fragment1 fragment1;
@@ -182,21 +182,20 @@ public class MainActivity extends AppCompatActivity implements OnTabItemSelected
     public void onRequest(String command) {
         if (command != null) {
             if (command.equals("getCurrentLocation")) {
-                getCurrentLocation();
+                getCurrentLocation(); //위치확인 시작
             }
         }
     }
 
     // 현재 일자를 확인하여 두번째 fragment에 set
     public void getCurrentLocation() {
-        // set current time
-        currentDate = new Date();
+        currentDate = new Date(); //
         currentDateString = AppConstants.dateFormat3.format(currentDate);
         if (fragment2 != null) {
             fragment2.setDateString(currentDateString);
         }
 
-        //객체에 현재 위치를 요청
+        //LocationManager 객체에게 현재 위치를 요청
         LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
         try {
@@ -207,11 +206,11 @@ public class MainActivity extends AppCompatActivity implements OnTabItemSelected
                 String message = "Last Location -> Latitude : " + latitude + "\nLongitude:" + longitude;
                 println(message);
 
-                getCurrentWeather();
-                getCurrentAddress();
+                getCurrentWeather(); //현재위치를 이용해서 날씨를 확인
+                getCurrentAddress(); //현재위치를 이용해서 주소를 확인
             }
 
-            gpsListener = new GPSListener();
+            gpsListener = new GPSListener(); //요청된 위치를 수신하려고 만든 객체
             long minTime = 10000;
             float minDistance = 0;
 
@@ -240,13 +239,13 @@ public class MainActivity extends AppCompatActivity implements OnTabItemSelected
         }
     }
 
-    //locationManager 객체에게 현재 위치를 요청받은 후 요청된 위치를 수신하려고 만든 객체
+    //locationManager 객체에게 현재 위치를 요청받은 그 요청된 위치를 수신하기위한  객체
     class GPSListener implements LocationListener {
         @Override
         public void onLocationChanged(@NonNull Location location) {
             currentLocation = location;
 
-            locationCount++;
+            locationCount++; //위치를 한번 확인한 후에는 위치 요청을 취소할 수 옸도록 위치 정보를 확인한 횟수를 담고 있을 변수
 
             Double latitude = location.getLatitude();
             Double longitude = location.getLongitude();
@@ -254,8 +253,8 @@ public class MainActivity extends AppCompatActivity implements OnTabItemSelected
             String message = "Current Location -> Latitude : " + latitude + "\nLongitude:" + longitude;
             println(message);
 
-            getCurrentWeather();
-            getCurrentAddress();
+            getCurrentWeather(); //현재위치를 이용해서 날씨를 확인
+            getCurrentAddress(); //현재위치를 이용해서 주소를 확인
 
         }
 
@@ -268,6 +267,7 @@ public class MainActivity extends AppCompatActivity implements OnTabItemSelected
 
     //위치가 확인되면 현재위치를 이용해서 주소를 확인
     private void getCurrentAddress() {
+        //Geocoder 클래스를 이용해 현재 위치를 주소로 변환
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
         List<Address> addresses = null;
 
@@ -314,6 +314,7 @@ public class MainActivity extends AppCompatActivity implements OnTabItemSelected
         MyApplication.send(AppConstants.REQ_WEATHER_BY_GRID, Request.Method.GET, url, params, this);
     }
 
+    //응답을 받으면 호출
     public void processResponse(int requestCode, int responseCode, String response) {
         if (responseCode == 200) {
             if (requestCode == AppConstants.REQ_WEATHER_BY_GRID) {
@@ -331,6 +332,7 @@ public class MainActivity extends AppCompatActivity implements OnTabItemSelected
                     }
                 };
 
+                //xml 응답 데티러를 자바 객체로 만들어줌
                 GsonXml gsonXml = new GsonXmlBuilder()
                         .setXmlParserCreator(parserCreator)
                         .setSameNameLists(true)
